@@ -15,9 +15,11 @@ function sp(){
     //...
 
     var x = d3.scale.linear()
+        .domain([0,100000])             <!-- Fel ställe att sefeniera axlarna på enligt labbanvisningarna ? --> 
         .range([0, width]);
 
     var y = d3.scale.linear()
+        .domain([0,100])
         .range([height, 0]);
 
     var xAxis = d3.svg.axis()
@@ -40,6 +42,11 @@ function sp(){
         
         //define the domain of the scatter plot axes
         //...
+
+        //Household income
+        //Student skills
+
+       // x = d3.scale.linear().domain([0,100]).range([0,width]);
         
         draw();
 
@@ -57,6 +64,13 @@ function sp(){
             .attr("class", "label")
             .attr("x", width)
             .attr("y", -6);
+            //.text("Household income");
+
+        svg.append("text")
+                    .attr("x", width/2)
+                    .attr("y", height*1.25)
+                    .style("text-anchor", "middle")
+                    .text("Household income");
             
         // Add y axis and title.
         svg.append("g")
@@ -67,7 +81,14 @@ function sp(){
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
             .attr("dy", ".71em");
-            
+            //.text("Student skills");
+        svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("x", -height/2)
+                .attr("y", -23)                     <!-- ful kod men hur gör vi den fin? -->
+                .style("text-anchor", "middle")
+                .text("Student skills");
+
         // Add the scatter dots.
         svg.selectAll(".dot")
             .data(self.data)
@@ -75,6 +96,13 @@ function sp(){
             .attr("class", "dot")
             //Define the x and y coordinate data values for the dots
             //...
+            .attr("x", function(d) {
+               return d[0];
+            })
+            .attr("y", function(d) {
+                return d[1];
+            })
+            .attr("r", 5) 
             //tooltip
             .on("mousemove", function(d) {
                 //...    
