@@ -15,9 +15,11 @@ function sp(){
     //...
 
     var x = d3.scale.linear()
+        .domain([0,100000])             <!-- Fel ställe att sefeniera axlarna på enligt labbanvisningarna ? -->
         .range([0, width]);
 
     var y = d3.scale.linear()
+        .domain([0,100])
         .range([height, 0]);
 
     var xAxis = d3.svg.axis()
