@@ -10,7 +10,7 @@ function sp(){
 
     //initialize color scale
     //...
-    
+
     //initialize tooltip
     //...
 
@@ -37,17 +37,25 @@ function sp(){
     //Load data
     d3.csv("data/OECD-better-life-index-hi.csv", function(error, data) {
         self.data = data;
-        
+
         //define the domain of the scatter plot axes
         //...
-        
+        data.forEach(function(d) {
+          d[1] = +d[1];
+          d[6] = +d[6];
+        });
+
+        x.domain(d3.extent(data, function(d) { return d[1]; })).nice();
+        y.domain(d3.extent(data, function(d) { return d[6]; })).nice();
+
+
         draw();
 
     });
 
     function draw()
     {
-        
+
         // Add x axis and title.
         svg.append("g")
             .attr("class", "x axis")
@@ -57,7 +65,13 @@ function sp(){
             .attr("class", "label")
             .attr("x", width)
             .attr("y", -6);
-            
+
+        svg.append("text")
+                    .attr("x", width/2)
+                    .attr("y", height*1.08)
+                    .style("text-anchor", "middle")
+                    .text("Household income");
+
         // Add y axis and title.
         svg.append("g")
             .attr("class", "y axis")
@@ -67,7 +81,14 @@ function sp(){
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
             .attr("dy", ".71em");
-            
+
+        svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("x", -height/2)
+                .attr("y", -23)
+                .style("text-anchor", "middle")
+                .text("Student skills");
+
         // Add the scatter dots.
         svg.selectAll(".dot")
             .data(self.data)
@@ -75,15 +96,20 @@ function sp(){
             .attr("class", "dot")
             //Define the x and y coordinate data values for the dots
             //...
+
+            .attr("r", 3.5)
+            .attr("cx", function(d) { return x(d[0]); })
+            .attr("cy", function(d) { return y(d[1]); })
+
             //tooltip
             .on("mousemove", function(d) {
-                //...    
+                //...
             })
             .on("mouseout", function(d) {
-                //...   
+                //...
             })
             .on("click",  function(d) {
-                //...    
+                //...
             });
     }
 
@@ -91,14 +117,10 @@ function sp(){
     this.selectDot = function(value){
         //...
     };
-    
+
     //method for selecting features of other components
     function selFeature(value){
         //...
     }
 
 }
-
-
-
-
