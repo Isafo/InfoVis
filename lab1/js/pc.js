@@ -39,7 +39,7 @@ function pc(){
         //...
         x.domain(dimensions = d3.keys([0,1,2,3,4]).filter(function(d) {
             return [(y[d] = d3.scale.linear()
-                .domain(d3.extent([0,1]))
+                .domain(d3.extent(self.data, function(p) {return +p[d];})) //.domain(d3.extent([0,1]))
                 .range([height, 0]))];
         }));
 
@@ -53,6 +53,9 @@ function pc(){
             .selectAll("path")
             //add the data and append the path 
             //...
+            .data(self.data)
+            .enter().append("path")
+            .attr("d", path)
             .on("mousemove", function(d){})
             .on("mouseout", function(){});
 
@@ -62,6 +65,9 @@ function pc(){
             .selectAll("path")
             //add the data and append the path 
             //...
+            .data(self.data)
+            .enter().append("path")
+            .attr("d", path)
             .on("mousemove", function(){})
             .on("mouseout", function(){});
 
@@ -76,6 +82,7 @@ function pc(){
         g.append("svg:g")
             .attr("class", "axis")
             //add scale
+            .each(function(d) {d3.select(this).call(axis.scale(y[d])); })
             .append("svg:text")
             .attr("text-anchor", "middle")
             .attr("y", -9)
