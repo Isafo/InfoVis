@@ -111,13 +111,13 @@ function sp(){
                 //...
             })
             .on("click",  function(d) {
-                //...
+              d3.select(this).attr("fill", "Orchid")
             });
     }
 
     //method for selecting the dot from other components
     this.selectDot = function(value){
-        //...
+        d3.select(value).attr("fill", "Orchid");
     };
 
     //method for selecting features of other components
