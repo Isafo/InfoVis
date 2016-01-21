@@ -43,12 +43,12 @@ function sp(){
         //define the domain of the scatter plot axes
         //...
         data.forEach(function(d) {
-          d[1] = +d[1];
-          d[6] = +d[6];
+          d["Household income"] = +d["Household income"];
+          d["Student skill"] = +d["Student skill"];
         });
 
-        x.domain(d3.extent(data, function(d) { return d[1]; })).nice();
-        y.domain(d3.extent(data, function(d) { return d[6]; })).nice();
+        x.domain(d3.extent(data, function(d) { return d["Household income"]; })).nice();
+        y.domain(d3.extent(data, function(d) { return d["Student skill"]; })).nice();
 
 
         draw();
@@ -100,8 +100,8 @@ function sp(){
             //...
 
             .attr("r", 3.5)
-            .attr("cx", function(d) { return x(d[0]); })
-            .attr("cy", function(d) { return y(d[1]); })
+            .attr("cx", function(d) { return x(d["Household income"]); })
+            .attr("cy", function(d) { return y(d["Student skill"]); })
 
             //tooltip
             .on("mousemove", function(d) {
