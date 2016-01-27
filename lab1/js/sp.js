@@ -1,5 +1,4 @@
 function sp(){
-
     var self = this; // for internal d3 functions
 
     var spDiv = $("#sp");
@@ -9,17 +8,20 @@ function sp(){
         height = spDiv.height() - margin.top - margin.bottom;
 
     //initialize color scale
-    //...
+	var color = d3.scale.category20b();
 
     //initialize tooltip
-    //...
+    var tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, 0])
+	  .html(function(d) {
+		return "<strong>Household income:</strong> <span style='color:red'>" + d["Household income"] + "</span>";
+	})
 
     var x = d3.scale.linear()
-        .domain([0,100000])             <!-- Fel ställe att sefeniera axlarna på enligt labbanvisningarna ? -->
         .range([0, width]);
 
     var y = d3.scale.linear()
-        .domain([0,100])
         .range([height, 0]);
 
     var xAxis = d3.svg.axis()
@@ -51,13 +53,18 @@ function sp(){
         y.domain(d3.extent(data, function(d) { return d["Student skills"]; })).nice();
 
 
-        draw();
+        draw(data);
 
     });
 
-    function draw()
+    function draw(data)
     {
 
+		var cc = {};
+		data.forEach(function(d,i){
+				cc[d["Country"]] = color(d["Country"]);
+		});
+	
         // Add x axis and title.
         svg.append("g")
             .attr("class", "x axis")
@@ -97,27 +104,38 @@ function sp(){
             .enter().append("circle")
             .attr("class", "dot")
             //Define the x and y coordinate data values for the dots
-            //...
-
             .attr("r", 3.5)
             .attr("cx", function(d) { return x(d["Household income"]); })
             .attr("cy", function(d) { return y(d["Student skills"]); })
+			
+			.style("fill",function(d,i) { 
+				return cc[d["Country"]];
+			})
 
             //tooltip
-            .on("mousemove", function(d) {
-                //...
+            .on("mouseover", function(d) {
+				return tip.show;
             })
             .on("mouseout", function(d) {
-                //...
+                return tip.hide;
             })
             .on("click",  function(d) {
-              d3.select(this).attr("fill", "Orchid")
+			  sp1.selectDot(d["Country"]);
+			
+			  //d3.select(this).attr("r", 7);
+			  pc1.selectLine(d["Country"]);
             });
     }
 
     //method for selecting the dot from other components
     this.selectDot = function(value){
-        d3.select(value).attr("fill", "Orchid");
+		d3.selectAll(".dot")
+			.attr("r", function(d){
+			if(value == d["Country"])
+				return 7;
+			else
+				return 3.5;
+			});
     };
 
     //method for selecting features of other components
