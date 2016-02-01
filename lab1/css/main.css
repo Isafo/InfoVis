@@ -23,6 +23,19 @@ html {
     line-height: 1.4;
 }
 
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 110px;                  
+  height: 22px;                 
+  padding: 2px;             
+  font: 10px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 2px;           
+  pointer-events: none;         
+}
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
