@@ -11,12 +11,10 @@ function sp(){
 	var color = d3.scale.category20b();
 
     //initialize tooltip
-    var tip = d3.tip()
-	  .attr('class', 'd3-tip')
-	  .offset([-10, 0])
-	  .html(function(d) {
-		return "<strong>Household income:</strong> <span style='color:red'>" + d["Household income"] + "</span>";
-	})
+    //var formatTime = d3.time.format("%e %B");
+    var div = d3.select("body").append("div")   
+                               .attr("class", "tooltip")               
+                               .style("opacity", 0);
 
     var x = d3.scale.linear()
         .range([0, width]);
@@ -113,11 +111,19 @@ function sp(){
 			})
 
             //tooltip
-            .on("mouseover", function(d) {
-				return tip.show;
+            .on("mouseover", function(d) {				
+                div.transition()        
+                   .duration(200)      
+                   .style("opacity", .9);      
+
+                div.html("Country: " + d["Country"])  
+                   .style("left", (d3.event.pageX) + "px")     
+                   .style("top", (d3.event.pageY - 28) + "px");  
             })
             .on("mouseout", function(d) {
-                return tip.hide;
+                div.transition()        
+                   .duration(500)      
+                   .style("opacity", 0);
             })
             .on("click",  function(d) {
 			  sp1.selectDot(d["Country"]);
@@ -129,7 +135,11 @@ function sp(){
 
     //method for selecting the dot from other components
     this.selectDot = function(value){
-		d3.selectAll(".dot")
+        //console.log("sp: selectDot");
+		//console.log(value);
+
+        console.log("test");
+        d3.selectAll(".dot")
 			.attr("r", function(d){
 			if(value == d["Country"])
 				return 7;
