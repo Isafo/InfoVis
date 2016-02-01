@@ -13,7 +13,7 @@
 	    k = 3;
 	}
 
-	var range[];
+	var range = [];
 	
 
 	for (var dimension in data) {
@@ -27,9 +27,9 @@
 	
 	var kPoints[];
 	
-	while(k--){
+	while(k--) {
 
-	    var point_pos[];
+	    var point_pos = [];
 	    
 	    // place k random points within the dimension
 	    for(var dimension in data) {
@@ -40,6 +40,28 @@
 	    kPoints.push(point_pos);
 	}
 
+	// calculate the euclidian distance to the centoids
+	// and get the closest centroid index
+	var centroid_index = [];
+	
+	for (var i in data) {
+
+	    var cur_value = data[i];
+	    var sum = infinity;
+	    for (var z = 0; z < kPoints.length; z++) {
+		for (var dimension in cur_value) {
+		    distance = kPonts[z][dimension] - curvalue[dimension];
+		}
+		distance = Math.sqrt(distance);
+		
+		if(sum > distance) {
+		    sum = distance;
+		    centroid_index[i] = z;
+		}	
+	    }
+	}
+
+	
 	
     };
 
