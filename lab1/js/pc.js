@@ -8,7 +8,9 @@ function pc(){
         width = pcDiv.width() - margin[1] - margin[3],
         height = pcDiv.height() - margin[0] - margin[2];
 
+	var color = d3.scale.category20b();
 
+		
     //initialize color scale
     //...
 
@@ -43,10 +45,16 @@ function pc(){
               .range([height, 0]));
         }));
 
-        draw();
+        draw(data);
     });
 
-    function draw(){
+    function draw(data){
+		
+		var cc = {};
+		data.forEach(function(d,i){
+				cc[d["Country"]] = color(d["Country"]);
+		});
+	
         // Add grey background lines for context.
         background = svg.append("svg:g")
             .attr("class", "background")
@@ -69,7 +77,10 @@ function pc(){
             .enter().append("path")
             .attr("d", path)
             .on("mousemove", function(){})
-            .on("mouseout", function(){});
+            .on("mouseout", function(){})
+			.style("stroke",function(d,i) { 
+				return cc[d["Country"]];
+			});
 
         // Add a group element for each dimension.
         var g = svg.selectAll(".dimension")
@@ -106,8 +117,11 @@ function pc(){
     function brush() {
         var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
             extents = actives.map(function(p) { return y[p].brush.extent(); });
+			foreground.style("opacity", 1);
         foreground.style("display", function(d) {
             return actives.every(function(p, i) {
+				if(extents[i][0] <= d[p] && d[p] <= extents[i][1])
+					sp1.selectDot(d["Country"]);
                 return extents[i][0] <= d[p] && d[p] <= extents[i][1];
             }) ? null : "none";
         });
@@ -115,7 +129,14 @@ function pc(){
 
     //method for selecting the pololyne from other components
     this.selectLine = function(value){
-        //...
+		d3.select(".foreground")
+			.selectAll("path")
+			.style("opacity", function(d){
+			if(value == d["Country"])
+				return 1;
+			else
+				return 0;
+			});
     };
 
     //method for selecting features of other components

@@ -12,9 +12,7 @@ function map(){
 
     //initialize color scale
     //...
-    var color = d3.scale.threshold()
-                    .domain([10, 20, 30, 40, 50])
-                    .range(["#9e9ac8", "756bb1", "dadaeb", "bcbddc", "#E82D0C"]);
+    var color = d3.scale.category20b();
 
     //initialize tooltip
     //...
@@ -32,17 +30,19 @@ function map(){
         .projection(projection);
 
     g = svg.append("g");
+	
+	var country_data = [];
 
     // load data and draw the map
-    d3.json("data/se.topojson", function(error, world) {
-        console.log(world);
-        var countries = topojson.feature(world, world.objects.swe_mun).features;
+    d3.json("data/world-topo.json", function(error, world) {
+        var countries = topojson.feature(world, world.objects.countries).features;
 
         //load summary data
         //...
-
-        draw(countries);
-
+		d3.csv("data/OECD-better-life-index-hi.csv", function(error,data) {		
+		
+        draw(countries,data);
+		});
     });
 
     function draw(countries,data)
@@ -50,12 +50,11 @@ function map(){
         var country = g.selectAll(".country").data(countries);
 
         //initialize a color country object
-        var cc = {};
-
-        //...
-        self.data.forEach(function(d) {
-          cc[d.id] = +d.color;
-        });
+        //var cc = new Map();
+		var cc = {};
+		data.forEach(function(d,i){
+				cc[d["Country"]] = color(d["Country"]);
+		});
 
         country.enter().insert("path")
             .attr("class", "country")
@@ -64,7 +63,11 @@ function map(){
             .attr("title", function(d) { return d.properties.name; })
             //country color
             //...
-            .style("fill", function(d) { return color(cc)})
+			.style("fill",function(d,i) { 
+				console
+				return cc[d.properties.name];
+			})
+
             //tooltip
             .on("mousemove", function(d) {
                 //...
