@@ -2,8 +2,6 @@ function pc(){
 
     var self = this; // for internal d3 functions
 
-    var points = [];
-
     var pcDiv = $("#pc");
 
     var margin = [30, 10, 10, 10],
@@ -56,10 +54,6 @@ function pc(){
 		data.forEach(function(d,i){
 				cc[d["Country"]] = color(d["Country"]);
 		});
-        console.log("draw");
-        console.log(points);
-        if (points.lenght != 0)
-                sp1.selectDot(points);
 	
         // Add grey background lines for context.
         background = svg.append("svg:g")
@@ -118,31 +112,22 @@ function pc(){
     function path(d) {
         return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
     }
-    
+
     // Handles a brush event, toggling the display of foreground lines.
     function brush() {
+		var selectedLines = [];
         var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
             extents = actives.map(function(p) { return y[p].brush.extent(); });
 			foreground.style("opacity", 1);
-        foreground.style("display", function(d) {            
-            
-            actives.every(function(p, i) {
-                if(extents[i][0] <= d[p] && d[p] <= extents[i][1]){
-                    points.push(d["Country"]);
-                    console.log("teeest");
-                }
-            });
-            /*console.log("test");
-            //console.log(pc);
-            //console.log(points);
-            if (points.lenght != 0)
-                sp1.selectDot(points);*/
+        foreground.style("display", function(d) {
             return actives.every(function(p, i) {
 				if(extents[i][0] <= d[p] && d[p] <= extents[i][1])
-					sp1.selectDot(d["Country"]);             
+					selectedLines.push(d["Country"]);
                 return extents[i][0] <= d[p] && d[p] <= extents[i][1];
             }) ? null : "none";
         });
+		console.log(selectedLines);
+		sp1.selectDot(selectedLines);
     }
 
     //method for selecting the pololyne from other components

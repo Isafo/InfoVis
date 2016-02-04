@@ -77,7 +77,9 @@ function map(){
             })
             //selection
             .on("click",  function(d) {
-                //...
+				console.log(d.properties.name);
+                sp1.selectDot(d.properties.name);
+				pc1.selectLine(d.properties.name);
             });
 
     }

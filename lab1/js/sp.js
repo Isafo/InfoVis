@@ -9,14 +9,13 @@ function sp(){
 
     //initialize color scale
 	var color = d3.scale.category20b();
-
-    //initialize tooltip
-    //var formatTime = d3.time.format("%e %B");
+	
+	//initialize tooltip
     var div = d3.select("body").append("div")   
                                .attr("class", "tooltip")               
                                .style("opacity", 0);
-
-    var x = d3.scale.linear()
+    
+	var x = d3.scale.linear()
         .range([0, width]);
 
     var y = d3.scale.linear()
@@ -110,7 +109,7 @@ function sp(){
 				return cc[d["Country"]];
 			})
 
-            //tooltip
+             //tooltip
             .on("mouseover", function(d) {				
                 div.transition()        
                    .duration(200)      
@@ -135,16 +134,12 @@ function sp(){
 
     //method for selecting the dot from other components
     this.selectDot = function(value){
-        //console.log("sp: selectDot");
-		//console.log(value);
-
-        console.log("test");
-        d3.selectAll(".dot")
+		d3.selectAll(".dot")
 			.attr("r", function(d){
-			if(value == d["Country"])
-				return 7;
-			else
-				return 3.5;
+				if(value.indexOf(d["Country"]) != -1)
+					return 7;
+				else
+					return 3.5;
 			});
     };
 
