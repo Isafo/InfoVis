@@ -10,7 +10,7 @@ function pc(){
 
     var x = d3.scale.ordinal().rangePoints([0, width], 1),
         y = {};
-        
+
 
     var line = d3.svg.line(),
         axis = d3.svg.axis().orient("left"),
@@ -23,34 +23,34 @@ function pc(){
         .append("svg:g")
         .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
 
-    
-    //d3.csv("data/testData1_400x3_2-clusters.csv", function(data) {
-	//d3.csv("data/testData2_400x3_2-clusters.csv", function(data) {
-	d3.csv("data/testData2_5600x5_x-clusters.csv", function(data) {
+
+        //d3.csv("data/testData1_400x3_2-clusters.csv", function(data) {
+	      //d3.csv("data/testData2_400x3_2-clusters.csv", function(data) {
+	      d3.csv("data/testData2_5600x5_x-clusters.csv", function(data) {
         // Extract the list of dimensions and create a scale for each.
         x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
             return (y[d] = d3.scale.linear()
                 .domain([0,1])
-        
+
                 //assign the the axis scale  between [0 1]
                 //...
                 .range([height, 0])
-                ); 
+                );
         }));
-        
+
         self.data = data;
-        
+
         var k = 4;
         var kmeansRes = kmeans(data,k);
-		
+
         //initialize the cluster colors
         //...
-        
+
         draw(kmeansRes);
     });
 
     function draw(kmeansRes){
-        
+
         // Add grey background lines for context.
         background = svg.append("svg:g")
             .attr("class", "background")
@@ -58,9 +58,9 @@ function pc(){
             .data(self.data)
             .enter().append("svg:path")
             .attr("d", path);
-                
+
 		var count = -1;
-		
+
         // Add blue foreground lines for focus.
         foreground = svg.append("svg:g")
             .attr("class", "foreground")
@@ -68,12 +68,12 @@ function pc(){
             .data(self.data)
             .enter().append("svg:path")
             .attr("d", path)
-            .style("stroke", function(d) {count++; return "hsl(" + kmeansRes[count] * 90 + ",100%,50%)"; })
-			//.style("stroke", function(d) { return "hsl(" + Math.random() * 360 + ",100%,50%)"; }); 
-    
+
+			      //.style("stroke", function(d) { return "hsl(" + Math.random() * 360 + ",100%,50%)"; });
+
             //Assign the cluster colors
             //..
-    
+            .style("stroke", function(d) {count++; return "hsl(" + kmeansRes[count] * 90 + ",100%,50%)"; })
 
         // Add a group element for each dimension.
         var g = svg.selectAll(".dimension")
@@ -81,7 +81,7 @@ function pc(){
             .enter().append("svg:g")
             .attr("class", "dimension")
             .attr("transform", function(d) { return "translate(" + x(d) + ")"; });
-            
+
 
         // Add an axis and title.
         g.append("svg:g")
@@ -116,6 +116,5 @@ function pc(){
             }) ? null : "none";
         });
     }
-   
-}
 
+}
