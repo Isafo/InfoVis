@@ -53,11 +53,21 @@ function map(data) {
         filterMag(this.value, data);
     });
 
+    var geoDataPoint;
     //Formats the data in a feature collection
     function geoFormat(array) {
         var data = [];
-        array.map(function (d, i) {
-            //Complete the code
+        array.map(function (d, i) {           
+           geoDataPoint = {
+               "type": "FeatureCollection",
+                "features": [
+                    {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [d.lon, d.lat]},
+                    "properties": {"prop0": "d.depth"}
+                    }             
+                ]  
+            }
         });
         return data;
     }
@@ -75,7 +85,10 @@ function map(data) {
                 .style("stroke", "white");
 
         //draw point        
-        var point //Complete the code
+        var point = svg.selectAll(".geojson").data(geoDataPoint);
+        point.enter().append("path")
+                .attr("class", "geojson")
+                .attr("d", path);
     };
 
     //Filters data points according to the specified magnitude
