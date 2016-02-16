@@ -11,18 +11,19 @@ function area(data) {
             height2 = areaDiv.height() - margin2.top - margin2.bottom;
 
     //Sets the data format
-    var format = d3.time.format.utc("");//Complete the code
+    //var format = d3.time.format.utc("");//Complete the code
+    var format = d3.time.format("%b %Y").parse;
 
     //Sets the scales 
-    var x = d3.time.scale().range([0, width]),
-            x2 = d3.time.scale().range([0, width]),
-            y = d3.scale.linear().range([height, 0]),
-            y2 = d3.scale.linear().range([height2, 0]);
+    var x  = d3.time.scale().range([0, width]),
+        x2 = d3.time.scale().range([0, width]),
+        y  = d3.scale.linear().range([height, 0]),
+        y2 = d3.scale.linear().range([height2, 0]);
     
     //Sets the axis 
-    var xAxis = d3.svg.axis().scale(x).orient("bottom"),
-            xAxis2 = d3.svg.axis().scale(x2).orient("bottom"),
-            yAxis = d3.svg.axis().scale(y).orient("left");
+    var xAxis  = d3.svg.axis().scale(x).orient("bottom"),
+        xAxis2 = d3.svg.axis().scale(x2).orient("bottom"),
+        yAxis  = d3.svg.axis().scale(y).orient("left");
     
     //Assigns the brush to the small chart's x axis
     var brush = d3.svg.brush()
@@ -33,22 +34,22 @@ function area(data) {
     var area = d3.svg.area()
             .interpolate("step")
             .x(function (d) {
-                return 10;//Complete the code
+                return x(d.mag);
             })
             .y0(height)
             .y1(function (d) {
-                return 10;//Complete the code
+                return y(d.depth);
             });
     
     //Creates the small chart        
         var area2 = d3.svg.area()
             .interpolate("step")
             .x(function (d) {
-                return 10;//Complete the code
+                return x2(d.mag);
             })
             .y0(height2)
             .y1(function (d) {
-                return 10;//Complete the code
+                return y2(d.depth);
             });
     
     //Assings the svg canvas to the area div
@@ -72,8 +73,8 @@ function area(data) {
             .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
     //Initializes the axis domains for the big chart
-    x.domain([10,10]);//Complete the code
-    y.domain([4, 10]);//Complete the code
+    x.domain(d3.extent(data.map(function(d){return d.mag;})));
+    y.domain([0, d3.max(data.map(function(d){return d.depth;}))]);
     //Initializes the axis domains for the small chart
     x2.domain(x.domain());
     y2.domain(y.domain());
