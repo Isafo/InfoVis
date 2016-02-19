@@ -122,5 +122,9 @@ function area(data) {
         focus.select("path").attr("d", area);
         focus.select(".x.axis").call(xAxis);
         //Complete the code
+
+        console.log(x.domain());
+
+        map1.filterTime()
     }
 }

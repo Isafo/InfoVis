@@ -99,6 +99,15 @@ function map(data) {
     //Filters data points according to the specified time window
     this.filterTime = function (value) {
         //Complete the code
+        console.log("hej Isabelle");
+        d3.selectAll(".geojson")
+          .style("opacity", function(d){
+
+            if (d3.min(value) < d.time < d3.max(value))
+                return 1;
+            else
+                return 0;
+          })
     };
 
     //Calls k-means function and changes the color of the points  
