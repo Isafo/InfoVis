@@ -1,7 +1,7 @@
 function map(){
 
     var zoom = d3.behavior.zoom()
-        .scaleExtent([1, 8])
+        .scaleExtent([1, 1])
         .on("zoom", move);
 
     var mapDiv = $("#map");
@@ -18,7 +18,7 @@ function map(){
     //...
 
     var projection = d3.geo.mercator()
-        .center([50, 60 ])
+        .center([-5, 60 ])
         .scale(250);
 
     var svg = d3.select("#map").append("svg")
@@ -31,7 +31,7 @@ function map(){
 
     g = svg.append("g");
 
-	  var country_data = [];
+	  var countries_data = [];
 
     // load data and draw the map
     d3.json("data/world-topo.json", function(error, world) {
@@ -45,8 +45,7 @@ function map(){
     		});
     });
 
-    function draw(countries,data)
-    {
+    function draw(countries,data) {
         var country = g.selectAll(".country").data(countries);
 
         //initialize a color country object
