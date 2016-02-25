@@ -19,6 +19,7 @@
 
         <!--modules css-->
         <link rel="stylesheet" href="css/map.css">
+        <link rel="stylesheet" href="css/pie.css">
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/other.css">
@@ -36,12 +37,25 @@
                 <!-- row of columns -->
                 <div class="row">
                   <div id="infobar" class="col-xs-6 col-md-3" style="height:110vh;">
-                    .col-xs-6  .col-md-4
+                    <div class="form-group">
+                     <label for="sel1">Select list:</label>
+                     <select class="form-control" id="sel1">
+                       <option>All languages</option>
+                       <option>Java</option>
+                       <option>C++</option>
+                       <option>C</option>
+                       <option>C#</option>
+                       <option>Javascript</option>
+                       <option>CSS</option>
+                     </select>
+                    </div>
+
+                    <!--<div id="pie" style="height:20vh; width:20vh"></div>-->
+
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-9">
                     <div id="map" style="height:110vh; width:300vh"></div>
                   </div>
-
                 </div>
 
                 <!--<div class="row">
@@ -73,6 +87,7 @@
 
         <!--modules js-->
         <script src="js/map.js"></script>
+        <script src="js/piechart.js"></script>
         <script src="js/main.js"></script>
 
     </body>
