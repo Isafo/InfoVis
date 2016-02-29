@@ -13,6 +13,7 @@ function map(){
     //initialize color scale
     //...
     var color_domain = [ 10, 100, 1000, 10000];
+    var legend_label = ["< 10", "> 10", "> 1000", "> 100000"];   
     var color = d3.scale.threshold()
                         .domain(color_domain)
                         .range(["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]);
@@ -68,7 +69,6 @@ function map(){
             //country color
             //...
       			.style("fill", function(d) {
-                console.log(cc[d.properties.name]);
       				  return cc[d.properties.name];
       			})
             .style("stroke", function(d) {
