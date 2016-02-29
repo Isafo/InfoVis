@@ -1,7 +1,7 @@
 function map(data) {
 
     var zoom = d3.behavior.zoom()
-            .scaleExtent([0.5, 8])
+            .scaleExtent([0.5, 2])
             .on("zoom", move);
 
     var mapDiv = $("#map");
@@ -41,6 +41,7 @@ function map(data) {
 
     //Formats the data in a feature collection trougth geoFormat()
     var geoData = {type: "FeatureCollection", features: geoFormat(data)};
+    //console.log(geoData);
 
     //Loads geo data
     d3.json("data/world-topo.json", function (error, world) {
@@ -53,21 +54,18 @@ function map(data) {
         filterMag(this.value, data);
     });
 
-    var geoDataPoint;
+    //var geoDataPoint;
     //Formats the data in a feature collection
     function geoFormat(array) {
         var data = [];
         array.map(function (d, i) {           
-           geoDataPoint = {
-               "type": "FeatureCollection",
-                "features": [
-                    {
-                    "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [d.lon, d.lat]},
-                    "properties": {"prop0": "d.depth"}
-                    }             
-                ]  
-            }
+           data.push({
+                    type: "Feature",
+                    geometry: {type: "Point", coordinates: [d.lon, d.lat]},
+                    properties: {depth: d.depth,
+                                 mag: d.mag,  
+                                 time: d.time } 
+                    });
         });
         return data;
     }
@@ -85,25 +83,40 @@ function map(data) {
                 .style("stroke", "white");
 
         //draw point        
-        var point = svg.selectAll(".geojson").data(geoDataPoint);
-        point.enter().append("path")
-                .attr("class", "geojson")
-                .attr("d", path);
+        //console.log(geoFormat(data));
+        //console.log(geoDataPoint.features[0].geometry.coordinates);
+        console.log(geoData.features);
+        var point = svg.selectAll("path").data(geoData.features);
+                    point.enter().append("path")
+                    .attr("class", "point")
+                    .attr("d", path);
     };
 
     //Filters data points according to the specified magnitude
     function filterMag(value) {
         //Complete the code
+        svg.selectAll("path")
+            .filter(".point")
+            .style("opacity", function(d)
+            {
+                if (d.properties.mag > value) 
+                    return 1;
+                else 
+                    return 0;
+
+            });
     }
     
     //Filters data points according to the specified time window
     this.filterTime = function (value) {
         //Complete the code
-        console.log("hej Isabelle");
-        d3.selectAll(".geojson")
+        d3.selectAll("path")        
+          .filter(".point")
           .style("opacity", function(d){
+            var format = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ");
+            var tempDate = format.parse(d.properties.time);
 
-            if (d3.min(value) < d.time < d3.max(value))
+            if (value[0] < tempDate && tempDate < value[1])
                 return 1;
             else
                 return 0;
@@ -113,6 +126,28 @@ function map(data) {
     //Calls k-means function and changes the color of the points  
     this.cluster = function () {
         //Complete the code
+        var tempData = [];
+
+        console.log(geoData.features)
+        geoData.features.forEach(function(i) {
+            tempData.push([i.properties.depth,i.properties.mag]);
+
+        });
+
+        console.log(tempData);
+
+        var k = 4;
+        var kmeansRes = kmeans(tempData,k);
+
+        console.log("cluster")
+        console.log(kmeansRes)
+
+        var count = -1;
+        d3.selectAll("path")        
+          .filter(".point")
+          .style("fill",  function(d) {count++; return "hsl(" + kmeansRes[count] * 90 + ",100%,50%)"; });
+
+
     };
 
     //Zoom and panning method

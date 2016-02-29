@@ -123,8 +123,8 @@ function area(data) {
         focus.select(".x.axis").call(xAxis);
         //Complete the code
 
-        console.log(x.domain());
+        //console.log(x.domain());
 
-        map1.filterTime()
+        map1.filterTime(x.domain());
     }
 }
