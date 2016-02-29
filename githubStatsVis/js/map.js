@@ -12,7 +12,10 @@ function map(){
 
     //initialize color scale
     //...
-    var color = d3.scale.category20b();
+    var color_domain = [ 10, 100, 1000, 10000];
+    var color = d3.scale.threshold()
+                        .domain(color_domain)
+                        .range(["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]);
 
     //initialize tooltip
     //...
@@ -39,7 +42,7 @@ function map(){
 
         //load summary data
         //...
-    		d3.csv("data/OECD-better-life-index-hi.csv", function(error,data) {
+    		d3.csv("data/github_commits_by_country.csv", function(error,data) {
 
             draw(countries,data);
     		});
@@ -52,8 +55,10 @@ function map(){
         //var cc = new Map();
     		var cc = {};
 	      data.forEach(function(d,i) {
-			      cc[d["Country"]] = color(d["Country"]);
+			      cc[d["Country"]] = color(d["Commits_per_100k_People"]);
 		    });
+
+
 
         country.enter().insert("path")
             .attr("class", "country")
@@ -62,10 +67,13 @@ function map(){
             .attr("title", function(d) { return d.properties.name; })
             //country color
             //...
-			.style("fill",function(d,i) {
-				console
-				return cc[d.properties.name];
-			})
+      			.style("fill", function(d) {
+                console.log(cc[d.properties.name]);
+      				  return cc[d.properties.name];
+      			})
+            .style("stroke", function(d) {
+      				  return "#888888";
+      			})
 
             //tooltip
             .on("mousemove", function(d) {
