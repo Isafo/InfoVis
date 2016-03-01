@@ -82,6 +82,8 @@ function map(){
             //selection
             .on("click",  function(d) {
                 console.log(d.properties.name);
+                d3.select('#info').selectAll("label").remove();
+                d3.select('#info').append('label').text(d.properties.name);
                 var pie = new pc(d.properties.name);
             });
 
