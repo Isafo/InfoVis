@@ -133,10 +133,11 @@ function map(data) {
             tempData.push([i.properties.depth,i.properties.mag]);
 
         });
-
         console.log(tempData);
 
-        var k = 4;
+        var k = Number(document.getElementById("k").value);
+        console.log("k = " + k);
+
         var kmeansRes = kmeans(tempData,k);
 
         console.log("cluster")
