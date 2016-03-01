@@ -2,4 +2,4 @@
 
 var pc = new pc("sweden");
 
-//var map = new map();
+var map = new map();

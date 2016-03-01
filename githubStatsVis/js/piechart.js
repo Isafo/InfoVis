@@ -55,14 +55,15 @@ function type(d) {
 }*/
 
 function pc(country) {
-// http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart 
+// delar av koden tagen från: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart 
 
-    var dataset = [
+    /*var language_dataset = [
       { label: 'Abulia', count: 10 }, 
       { label: 'Betelgeuse', count: 20 },
       { label: 'Cantaloupe', count: 30 },
       { label: 'Dijkstra', count: 40 }
-    ];
+    ];*/
+    var myMap = new Map();
 
     var width = Number(document.getElementById("chart").offsetWidth)/2;
     var height = Number(document.getElementById("chart").offsetHeight);
@@ -90,38 +91,65 @@ function pc(country) {
                        .value(function(d) { return d.count; })
                        .sort(null);
 
-    var path = svg.selectAll('path')
-                  .data(pie(dataset))
-                  .enter()
-                  .append('path')
-                  .attr('d', arc)
-                  .attr('fill', function(d, i) { 
-                    return color(d.data.label);
-                  });
+    d3.csv("data/github_commits_by_location_and_language.csv", function(error, bigdataset) {  
+        var temp;
+        bigdataset.forEach(function(d) {                    
+            //d.count = +d.count; 
+            //language_dataset.(d.repository_language) = repository_language + d.num_users;
+            //Country,repository_language,num_users
+            if (Number(d.num_users)){
 
-    var legend = svg.selectAll('.legend')
-                    .data(color.domain())
-                    .enter()
-                    .append('g')
-                    .attr('class', 'legend')
-                    .attr('transform', function(d, i) {
-                        var height = legendRectSize + legendSpacing;
-                        var offset =  height * color.domain().length / 2;
-                        var horz = radius + legendRectSize;
-                        var vert = i * height - offset;
-                        return 'translate(' + horz + ',' + vert + ')';
-                    });
+                if (myMap.has(d.repository_language)){
+                    temp = Number(myMap.get(d.repository_language));
+                    myMap.set(d.repository_language, Number(d.num_users) + temp);
+                } 
+                else
+                    myMap.set(d.repository_language, Number(d.num_users));               
+            }
+            //else
+                //console.log("country " + d.Country + "     language " + d.repository_language +"   number: " +d.num_users);
+        }); 
 
-    legend.append('rect')
-          .attr('width', legendRectSize)
-          .attr('height', legendRectSize)                                   
-          .style('fill', color)
-          .style('stroke', color);
-            
-    legend.append('text')
-          .attr('x', legendRectSize + legendSpacing)
-          .attr('y', legendRectSize - legendSpacing)
-          .text(function(d) { return d; });
+        var dataset = [];
+
+        for (var [key, value] of myMap) {
+          console.log(key + " = " + value);
+          dataset.push({ label: key, count: value })
+        }
+
+        var path = svg.selectAll('path')
+                      .data(pie(dataset))
+                      .enter()
+                      .append('path')
+                      .attr('d', arc)
+                      .attr('fill', function(d, i) { 
+                        return color(d.data.label);
+                      });
+
+        var legend = svg.selectAll('.legend')
+                        .data(color.domain())
+                        .enter()
+                        .append('g')
+                        .attr('class', 'legend')
+                        .attr('transform', function(d, i) {
+                            var height = legendRectSize + legendSpacing;
+                            var offset =  height * color.domain().length / 2;
+                            var horz = radius + legendRectSize;
+                            var vert = i * height - offset;
+                            return 'translate(' + horz + ',' + vert + ')';
+                        });
+
+        legend.append('rect')
+              .attr('width', legendRectSize)
+              .attr('height', legendRectSize)                                   
+              .style('fill', color)
+              .style('stroke', color);
+                
+        legend.append('text')
+              .attr('x', legendRectSize + legendSpacing)
+              .attr('y', legendRectSize - legendSpacing)
+              .text(function(d) { return d; });
+    }); 
 
 }
  console.log("piechart slut");
