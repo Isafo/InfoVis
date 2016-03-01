@@ -82,6 +82,7 @@ function map(){
             //selection
             .on("click",  function(d) {
                 console.log(d.properties.name);
+                var pie = new pc(d.properties.name);
             });
 
     }

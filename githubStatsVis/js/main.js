@@ -1,5 +1,5 @@
 //var sp1 = new sp();
 
-var pc = new pc("sweden");
+var pie1 = new pc("All");
 
-var map = new map();
+var map = new map(pc);
