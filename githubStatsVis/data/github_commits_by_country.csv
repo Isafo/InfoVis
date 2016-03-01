@@ -1,4 +1,4 @@
-Country,Commit Count,Commits per Capita,"Commits per 100,000 People",Population
+Country,Commit_Count,Commits_per_Capita,Commits_per_100k_People,Population
 Pitcairn,63,1.369565217,136956.52,46
 Saint Helena,928,0.1243967828,12439.68,7460
 Christmas Island,153,0.102,10200,1500
