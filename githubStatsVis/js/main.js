@@ -1,5 +1,5 @@
 //var sp1 = new sp();
 
-//var pc1 = new pc();
+var pc = new pc("sweden");
 
-var map = new map();
+//var map = new map();

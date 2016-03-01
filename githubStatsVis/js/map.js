@@ -1,7 +1,5 @@
 function map(){
 
-    console.log("start av map");
-
     var zoom = d3.behavior.zoom()
         .scaleExtent([1, 1])
         .on("zoom", move);
@@ -39,21 +37,17 @@ function map(){
     g = svg.append("g");
 
 	var countries_data = [];
-    console.log("innan ladda data");
     // load data and draw the map
     d3.json("data/world-topo.json", function(error, world) {
         var countries = topojson.feature(world, world.objects.countries).features;
         //load summary data
-        console.log("ladda karta");
    		d3.csv("data/github_commits_by_country.csv", function(error,data) {
 
-        console.log("ladda karta");
             draw(countries,data);
 		});
     });
 
     function draw(countries,data) {
-        console.log("draw");
         var country = g.selectAll(".country").data(countries);
 
         //initialize a color country object
@@ -87,7 +81,7 @@ function map(){
             })
             //selection
             .on("click",  function(d) {
-
+                console.log(d.properties.name);
             });
 
     }
