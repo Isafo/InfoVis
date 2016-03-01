@@ -67,11 +67,18 @@ function pc(country) {
             }); 
 
             var dataset = [];
+            var tooManyLanguages = 0;
 
             for (var [key, value] of myMap) {
-              //console.log(key + " = " + value);
-              dataset.push({ label: key, count: value })
+                //console.log(key + " = " + value);
+                if (dataset.length < 6)
+                    dataset.push({ label: key, count: value });
+                else 
+                    tooManyLanguages = tooManyLanguages + value;
             }
+            if (tooManyLanguages)
+                dataset.push({ label: "others", count: tooManyLanguages })
+
 
             var path = svg.selectAll('path')
                           .data(pie(dataset))
