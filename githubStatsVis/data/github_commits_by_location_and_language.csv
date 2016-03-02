@@ -115,7 +115,6 @@ Netherlands,CSS,40234
 Tokyo,JavaScript,40223
 Shanghai,JavaScript,39842
 United Kingdom,Java,39461
-������,JavaScript,38873
 Denver, CO,Ruby,38542
 Switzerland,JavaScript,38445
 Cambridge, MA,JavaScript,37782
@@ -151,7 +150,7 @@ Chicago,JavaScript,33601
 Taiwan,JavaScript,33358
 The Netherlands,PHP,32957
 Stuttgart, Germany,PHP,32682
-USARuby,32595
+USA,Ruby,32595
 Philadelphia, PA,JavaScript,32561
 UK,CSS,32334
 Berkeley, CA,Python,32304
@@ -162,7 +161,7 @@ Los Angeles,JavaScript,31489
 Bangalore,JavaScript,31425
 California,JavaScript,31259
 Boston,JavaScript,31240
-Stockholm, Sweden,JavaScript,31193
+Sweden,JavaScript,31193
 Mountain View, CA,Python,31015
 Vancouver, BC,JavaScript,30881
 India,Java,30865
@@ -325,7 +324,7 @@ Paris, France,CSS,19295
 London,Shell,19293
 United Kingdom,CSS,19259
 Russia,Java,19257
-Stockholm, Sweden,Python,19103
+Sweden,Python,19103
 Sydney,JavaScript,19047
 Finland,C++,18983
 Japan,C++,18966
@@ -499,7 +498,7 @@ Moscow,C++,13734
 Montreal, Canada,JavaScript,13731
 India,C,13723
 Oslo,JavaScript,13707
-Stockholm, Sweden,Java,13697
+Sweden,Java,13697
 Ukraine,C++,13640
 USAegon,Ruby,13622
 Seattle,CSS,13614
@@ -567,7 +566,7 @@ China,Ruby,12736
 Vienna,JavaScript,12718
 Toronto, Ontario, Canada,JavaScript,12680
 Germany,Objective-C,12642
-Stockholm, Sweden,Ruby,12638
+Sweden,Ruby,12638
 Sydney, Australia,Scala,12630
 Argentina,Java,12585
 Atlanta, GA,Python,12554
@@ -643,7 +642,7 @@ Earth,C++,11587
 Brighton, UK,JavaScript,11582
 The Astral Cloud,Ruby,11581
 Shanghai, China,Java,11576
-Stockholm, Sweden,C#,11552
+Sweden,C#,11552
 Pittsburgh, PA,CSS,11546
 Beijing, China,C,11545
 Madrid,Ruby,11520
@@ -722,7 +721,7 @@ England,Java,10572
 Taipei, Taiwan,LiveScript,10560
 Hong Kong,PHP,10515
 Auckland, New Zealand,JavaScript,10513
-Stockholm, Sweden,C++,10486
+Sweden,C++,10486
 Finland,Python,10484
 Vietnam,JavaScript,10478
 Sydney,Ruby,10469
@@ -748,7 +747,7 @@ USA,C,10115
 Germany,Haxe,10114
 Barcelona,Ruby,10079
 Belgium,C#,10074
-Stockholm, Sweden,C,10067
+Sweden,C,10067
 Bangalore, India,Java,10065
 New York, NY,Shell,10063
 China,Go,10050
@@ -767,7 +766,7 @@ Lyon,JavaScript,9822
 USA,Ruby,9814
 LV-233,PHP,9812
 Wellington, New Zealand,C#,9793
-Stockholm, Sweden,CSS,9791
+Sweden,CSS,9791
 Texas,JavaScript,9786
 Raleigh, NC,Go,9783
 Tokyo, Japan,PHP,9776
@@ -1234,7 +1233,7 @@ Boulder, Colorado,Python,6462
 Chino, CA,Java,6461
 Cambridge, Massachusetts,Python,6451
 France,Objective-C,6451
-Stockholm, Sweden,Shell,6450
+Sweden,Shell,6450
 Brisbane, Australia,CSS,6446
 Atlanta,JavaScript,6441
 Krak��w, Poland,JavaScript,6439
@@ -1478,7 +1477,7 @@ Warsaw,JavaScript,5521
 Czech Republic,Ruby,5516
 Berlin,CoffeeScript,5512
 Tokyo,PHP,5502
-Stockholm, Sweden,PHP,5498
+Sweden,PHP,5498
 San Francisco, CA, USA,Ruby,5495
 Earth,C,5494
 Shanghai,PHP,5494
@@ -1488,7 +1487,7 @@ Oslo, Norway,C,5489
 Amsterdam, NL,C,5479
 Warsaw, Poland,C++,5473
 San Diego,PHP,5469
-Stockholm, Sweden,Go,5465
+Sweden,Go,5465
 Minsk, Belarus,Python,5464
 Sao Paulo, Brazil,JavaScript,5457
 San Francisco, CA,Clojure,5456
@@ -3072,7 +3071,7 @@ Munich, Germany,Scala,2707
 Lille,JavaScript,2707
 Kharkiv, Ukraine,PHP,2707
 FRANCE,PHP,2706
-Stockholm, Sweden,Objective-C,2705
+Sweden,Objective-C,2705
 Russian Federation,DM,2704
 Sweden,CoffeeScript,2701
 York, UK,JavaScript,2699
@@ -3115,7 +3114,7 @@ San Francisco,Haskell,2668
 Paris, france,JavaScript,2667
 Palo Alto, CA,Objective-C,2667
 New Orleans, Louisiana,CSS,2667
-Stockholm, Sweden,Erlang,2665
+Sweden,Erlang,2665
 Bozeman, MT,Python,2663
 Anaheim Hills, CA,CSS,2663
 S��o Paulo, Brasil,Ruby,2662
@@ -3191,7 +3190,7 @@ London, UK,Perl,2613
 Pune, India,CSS,2613
 Tampa, Fl,Java,2611
 Montr��al,Java,2608
-Stockholm, Sweden,Haskell,2607
+Sweden,Haskell,2607
 England,C,2607
 Vancouver,PHP,2605
 Montreal, QC,CSS,2605
@@ -4093,7 +4092,7 @@ SF Bay Area, CA, USA,JavaScript,2019
 Poland,Go,2019
 guangzhou,JavaScript,2018
 Brisbane, AUS,PHP,2017
-Stockholm, Sweden,VimL,2017
+Sweden,VimL,2017
 San Francisco, CA,Emacs Lisp,2017
 Red Lick, TX, USA,JavaScript,2016
 Taipei,Shell,2016
@@ -4274,7 +4273,7 @@ Illinois,JavaScript,1928
 Saint-Petersburg, Russian Federation,Java,1927
 Russia, Kazan,Ruby,1926
 Saint-Petersburg, Russia,Python,1925
-Stockholm, Sweden,Scala,1925
+Sweden,Scala,1925
 hyderabad,JavaScript,1924
 Vancouver, B.C.,Java,1924
 SoCal,JavaScript,1922
@@ -4522,7 +4521,7 @@ Munich,C++,1822
 Vilnius, Lithuania,Java,1821
 Tampere, Finland,CSS,1820
 Vancouver, Canada,Shell,1819
-Stockholm, Sweden,Perl,1819
+Sweden,Perl,1819
 Berlin/Germany,Python,1818
 North Carolina,Java,1818
 Lisbon,Ruby,1817
@@ -4631,7 +4630,7 @@ Redmond, WA,C++,1779
 Z��rich, Schweiz,PHP,1779
 Saint-Petersburg, Russia,CSS,1779
 Pune, India,Shell,1778
-Stockholm, Sweden,CoffeeScript,1778
+Sweden,CoffeeScript,1778
 US East,Python,1778
 Waterloo, Ontario, Canada,C#,1777
 San Francisco, California,PHP,1775
@@ -5055,7 +5054,7 @@ Trondheim,CSS,1618
 SF Bay Area,Java,1618
 Menlo Park, California,C++,1617
 soon-to-be-Boston, MA,JavaScript,1616
-4 Potmakers Grove, Sutton in Ashfield, United Kingdom, NG174JJ,Java,1616
+United Kingdom,Java,1616
 Worcestershire, UK,JavaScript,1616
 Bangkok, Thailand,Objective-C,1616
 Brno, Czech republic,Go,1615
@@ -5063,8 +5062,7 @@ Lawrence, Kansas,Java,1615
 ��������������,JavaScript,1615
 Vienna,C#,1615
 Santa Monica,Ruby,1615
-Volgograd, Russia,C#,1615
-������������, ������������, ��������������,PHP,1614
+Russia,C#,1615
 Montreal, Canada,C++,1614
 New Haven, CT,C,1614
 Paris, France,Emacs Lisp,1613
@@ -6161,7 +6159,7 @@ Eastern USA,C++,1310
 Taiwan,CoffeeScript,1310
 Salt Lake City, Utah,CSS,1309
 Czech Republic,Go,1309
-Stockholm, Sweden,Groovy,1309
+Sweden,Groovy,1309
 Czech Rebublic,TypeScript,1309
 Netherlands,VimL,1309
 Plymouth, UK,JavaScript,1309
@@ -6702,7 +6700,7 @@ Chicago IL,Python,1189
 Kotka, Finland,Shell,1188
 chengdu,JavaScript,1188
 Aloha, Oregon, USA,Shell,1188
-Stockholm, Sweden,Clojure,1187
+Sweden,Clojure,1187
 Brest, France,Java,1187
 Fort Worth, Texas,JavaScript,1186
 Evergreen, CO,Python,1186
@@ -7398,7 +7396,7 @@ Worldwide,CSS,1070
 St.Petersburg,JavaScript,1070
 Shanghai China,PHP,1069
 St. Gallen < Switzerland < Europe < Earth,JavaScript,1069
-Stockholm, Sweden,OpenEdge ABL,1069
+Sweden,OpenEdge ABL,1069
 Little Rock, AR,JavaScript,1069
 Wroc��aw,C++,1069
 Myrtle Beach, SC,PHP,1069
@@ -9422,7 +9420,7 @@ internet,JavaScript,810
 Pozna��,Objective-C,810
 Jodhpur, India,Ruby,810
 lille (france),CSS,810
-Stockholm, Sweden,Julia,810
+Sweden,Julia,810
 berlin,Ruby,810
 Baltimore,C++,810
 Kiato, Greece,Ruby,810
@@ -9752,7 +9750,7 @@ Yangon,Java,780
 Oulu, Finland,Python,779
 Tucson, Arizona,Python,779
 East Lansing, MI / USA,Python,779
-Stockholm, Sweden,TeX,779
+Sweden,TeX,779
 New Orleans,CSS,779
 Roubaix Nord France,Shell,779
 Maine,CSS,779
@@ -10680,7 +10678,7 @@ Toulouse, France,Ruby,701
 Fortaleza-CE, Brasil,Java,701
 Orl��ans,PHP,701
 Suzhou,Jiangsu,China,JavaScript,701
-Stockholm, Sweden,R,701
+Sweden,R,701
 Hungary,Groovy,701
 Montpellier,CSS,701
 Dresden, Germany,C#,701
@@ -10893,7 +10891,7 @@ NC,CSS,686
 Cape Town, South Africa.,CSS,685
 The Commonwealth,Rust,685
 Atlanta, GA,R,685
-Stockholm, Sweden,Io,685
+Sweden,Io,685
 Sydney, Australia,TeX,685
 Stanford, CA,Perl,685
 Italia,Python,685
@@ -11699,7 +11697,7 @@ Brisbane, Australia,Go,632
 Northampton, UK,Go,632
 Brisbane,Shell,631
 Galway, Ireland,Shell,631
-Stockholm, Sweden,Emacs Lisp,631
+Sweden,Emacs Lisp,631
 Trieste,C++,631
 Omsk,JavaScript,631
 Bath, UK,Python,631
@@ -15465,7 +15463,7 @@ Redlands, California,PHP,454
 Ohio,CoffeeScript,454
 Odessa,CSS,454
 Tsinghua University, Haidian District , Beijing, China,JavaScript,453
-Munich / Germany,JavaScript,453
+Germany,JavaScript,453
 Hubli, India,Java,453
 Montreal, QC,Scala,453
 Kotka, Finland,CSS,453
