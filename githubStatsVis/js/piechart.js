@@ -1,20 +1,12 @@
 function pc(country) {
-    console.log("piechart start");
     var self = this;
-    // delar av koden tagen från: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart 
+    // delar av koden tagen från: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart
 
-    /*var dataset = [
-      { label: 'Abulia', count: 10 }, 
-      { label: 'Betelgeuse', count: 20 },
-      { label: 'Cantaloupe', count: 30 },
-      { label: 'Dijkstra', count: 40 }
-    ];*/
     var myMap = new Map();
 
     var width = Number(document.getElementById("chart").offsetWidth)/2;
     var height = Number(document.getElementById("chart").offsetHeight);
-    //console.log("width " + width);
-    //console.log("height " + height);
+
     var radius = Math.min(width, height) / 2;
     var donutWidth = radius * 0.3; // for piechart: donutWidth = radius;
     var legendRectSize = 18;
@@ -33,7 +25,7 @@ function pc(country) {
                 .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
 
     var arc = d3.svg.arc()
-                    .innerRadius(radius - donutWidth) 
+                    .innerRadius(radius - donutWidth)
                     .outerRadius(radius);
 
     var pie = d3.layout.pie()
@@ -41,10 +33,10 @@ function pc(country) {
                        .sort(null);
 
 
-    d3.csv("data/github_commits_by_location_and_language.csv", function(error, bigdataset) {  
+    d3.csv("data/github_commits_by_location_and_language.csv", function(error, bigdataset) {
         //rearrange the data so that it can be displayd in the pieChart
         var temp;
-        bigdataset.forEach(function(d) {                   
+        bigdataset.forEach(function(d) {
 
             if(d.Country == country || country == "All"){
                 if (Number(d.num_users)){
@@ -52,23 +44,22 @@ function pc(country) {
                     if (myMap.has(d.repository_language)){
                         temp = Number(myMap.get(d.repository_language));
                         myMap.set(d.repository_language, Number(d.num_users) + temp);
-                    } 
+                    }
                     else
-                        myMap.set(d.repository_language, Number(d.num_users));               
+                        myMap.set(d.repository_language, Number(d.num_users));
                 }
                 //else //för att rensa csv filen
                     //console.log("country " + d.Country + "     language " + d.repository_language +"   number: " +d.num_users);
             }
-        }); 
+        });
 
         var dataset = [];
         var tooManyLanguages = 0;
 
         for (var [key, value] of myMap) {
-            //console.log(key + " = " + value);
-            if (dataset.length < 6)
+            if (dataset.length < 9)
                 dataset.push({ label: key, count: value });
-            else 
+            else
                 tooManyLanguages = tooManyLanguages + value;
         }
         if (tooManyLanguages)
@@ -80,7 +71,7 @@ function pc(country) {
                       .enter()
                       .append('path')
                       .attr('d', arc)
-                      .attr('fill', function(d, i) { 
+                      .attr('fill', function(d, i) {
                         return color(d.data.label);
                       });
 
@@ -92,8 +83,8 @@ function pc(country) {
             console.log(d.data.label);
             console.log(d.data.count);
             tooltip.select('.label2').html(d.data.label);
-            tooltip.select('.count').html(d.data.count); 
-            tooltip.select('.percent').html(percent + '%'); 
+            tooltip.select('.count').html(d.data.count);
+            tooltip.select('.percent').html(percent + '%');
             tooltip.style('display', 'block');
         });
 
@@ -121,28 +112,26 @@ function pc(country) {
 
         legend.append('rect')
               .attr('width', legendRectSize)
-              .attr('height', legendRectSize)                                   
+              .attr('height', legendRectSize)
               .style('fill', color)
               .style('stroke', color);
-                
+
         legend.append('text')
               .attr('x', legendRectSize + legendSpacing)
               .attr('y', legendRectSize - legendSpacing)
               .text(function(d) { return d; });
     });
 
-    var tooltip = d3.select('#chart')           
-        .append('div')                           
-        .attr('class', 'tooltip');                
+    var tooltip = d3.select('#chart')
+        .append('div')
+        .attr('class', 'tooltip');
 
-    tooltip.append('div')                     
-        .attr('class', 'label2');                
+    tooltip.append('div')
+        .attr('class', 'label2');
 
-    tooltip.append('div')                       
-        .attr('class', 'count');                  
+    tooltip.append('div')
+        .attr('class', 'count');
 
-    tooltip.append('div')                        
-        .attr('class', 'percent');                 
-
-    console.log("piechart slut");
+    tooltip.append('div')
+        .attr('class', 'percent');
 }
