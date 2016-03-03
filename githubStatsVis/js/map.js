@@ -47,9 +47,14 @@ function map() {
     });
 
     function draw(data,cc) {
+        g.selectAll(".country").remove();
+
         var country = g.selectAll(".country").data(countries);
 
         console.log("draw");
+        console.log(cc)
+
+
 
         country.enter().insert("path")
             .attr("class", "country")
@@ -75,7 +80,6 @@ function map() {
             .on("click",  function(d) {
 
             });
-
     }
 
     //zoom and panning method
@@ -108,11 +112,22 @@ function map() {
           break;
 
         default:
+          var population = {};
+          d3.csv("data/github_commits_by_country.csv", function(error,data) {
+              data.forEach(function(d,i) {
+                  population[d["Country"]] = d["Population"] / 100000;
+              });
+          });
+
+          console.log(population);
+
           d3.csv("data/github_commits_by_location_and_language.csv", function(error,data) {
 
             data.forEach(function(d,i) {
               if(d["repository_language"] == mode)
-                cc[d["Country"]] = color(d["repository_language"]);
+                if(Number(d["num_users"])) {
+                  cc[d["Country"]] = color(d["num_users"] / population[d["Country"]]);
+                }
             });
 
             draw(data,cc);
