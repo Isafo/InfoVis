@@ -80,8 +80,8 @@ function pc(country) {
                 return d.count;
             }));
             var percent = Math.round(1000 * d.data.count / total) / 10;
-            console.log(d.data.label);
-            console.log(d.data.count);
+            //console.log(d.data.label);
+            //console.log(d.data.count);
             tooltip.select('.label2').html(d.data.label);
             tooltip.select('.count').html(d.data.count);
             tooltip.select('.percent').html(percent + '%');

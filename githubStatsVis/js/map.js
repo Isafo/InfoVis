@@ -39,7 +39,8 @@ function map() {
 
     g = svg.append("g");
 
-	  var countries_data = [];
+	var countries_commits = [];
+    var countries_population = [];
 
     // load data and draw the map
     d3.json("data/world-topo.json", function(error, world) {
@@ -74,8 +75,13 @@ function map() {
             //selection
             .on("click",  function(d) {
                 console.log(d.properties.name);
+                d3.select('#title').selectAll("label").remove();
                 d3.select('#info').selectAll("label").remove();
-                d3.select('#info').append('label').text(d.properties.name);
+                
+                d3.select('#title').append('label').text("Top 10 languages in " + d.properties.name);
+                d3.select('#info').append('label').text("Population : " + countries_population[d.properties.name]);
+                d3.select('#info').append('label').text("Numer of commits per 100k people : " + countries_commits[d.properties.name]);
+
                 var pie = new pc(d.properties.name);
             });
 
@@ -104,6 +110,8 @@ function map() {
           d3.csv("data/github_commits_by_country.csv", function(error,data) {
               data.forEach(function(d,i) {
                   cc[d["Country"]] = color(d["Commits_per_100k_People"]);
+                  countries_commits[d["Country"]] = d["Commits_per_100k_People"];
+                  countries_population[d["Country"]] = d["Population"]; 
               });
 
               draw(data,cc);
