@@ -1,4 +1,6 @@
 
-var pie1 = new pc("All");
+var pie = new pc("All");
 
-var map = new map(pc);
+var map = new map();
+
+map.setMode("All");

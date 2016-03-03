@@ -14,7 +14,7 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/colorbrewer.css">
+        <link rels="stylesheet" href="css/colorbrewer.css">
         <link rel="stylesheet" href="css/main.css">
 
         <!--modules css-->
@@ -26,6 +26,7 @@
 
     </head>
     <body>
+
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -39,14 +40,15 @@
                   <div id="infobar" class="col-xs-6 col-md-3" style="height:110vh;">
                     <div class="form-group">
                      <label for="sel1">Select list:</label>
-                     <select class="form-control" id="sel1">
-                       <option>All languages</option>
-                       <option>Java</option>
-                       <option>C++</option>
-                       <option>C</option>
-                       <option>C#</option>
-                       <option>Javascript</option>
-                       <option>CSS</option>
+                     <select class="form-control" id="language_select">
+                       <option value="All">All languages</option>
+                       <option value="Java">Java</option>
+                       <option value="C++">C++</option>
+                       <option value="C">C</option>
+                       <option value="C#">C#</option>
+                       <option value="Javascript">Javascript</option>
+                       <option value="CSS">CSS</option>
+                       <option value="Python">Python</option>
                      </select>
                     </div>
 
@@ -89,9 +91,10 @@
         <script src="//d3js.org/d3.v3.min.js"></script>
 
         <!--modules js-->
-        <script src="js/map.js"></script> 
+        <script src="js/map.js"></script>
         <script src="js/piechart.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/selectListener.js"></script>
 
     </body>
 </html>
