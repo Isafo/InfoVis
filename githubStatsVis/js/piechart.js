@@ -1,4 +1,4 @@
-function pc(country) {
+function piec(country) {
     var self = this;
     // delar av koden tagen från: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart
 
