@@ -44,15 +44,17 @@ function map() {
         countries = topojson.feature(world, world.objects.countries).features;
     });
 
-    function draw(data,cc) {
+    function draw(data,cc,mode) {
+        svg.selectAll(".legend").remove();
         g.selectAll(".country").remove();
 
         var country = g.selectAll(".country").data(countries);
 
-        console.log("draw");
-        console.log(cc)
-
-
+        var legendInfoText;
+        if(mode == 1)
+          legendInfoText = "Commits per 100k population";
+        else
+          legendInfoText = "Repos per 100k population"
 
         country.enter().insert("path")
             .attr("class", "country")
@@ -100,6 +102,12 @@ function map() {
                   .style("stroke", function(d, i) { return "#888888"; });
 
             legend.append("text")
+                  .attr("class", "legendInfo")
+                  .attr("x", 20)
+                  .attr("y", height*0.95 - (5*legend_height) - legend_height)
+                  .text(legendInfoText);
+
+            legend.append("text")
                   .attr("x", 50)
                   .attr("y", function(d, i){ return height*0.95 - 4*i - (i*legend_height) - legend_height - 4;})
                   .text(function(d, i){ return legend_label[i]; });
@@ -120,9 +128,6 @@ function map() {
     this.setMode = function(mode) {
       var cc = {};
 
-      console.log("setmode");
-      console.log(mode);
-
       switch(mode) {
         case "All":
           d3.csv("data/github_commits_by_country.csv", function(error,data) {
@@ -130,7 +135,7 @@ function map() {
                   cc[d["Country"]] = color(d["Commits_per_100k_People"]);
               });
 
-              draw(data,cc);
+              draw(data,cc, 1);
           });
           break;
 
@@ -142,8 +147,6 @@ function map() {
               });
           });
 
-          console.log(population);
-
           d3.csv("data/github_commits_by_location_and_language.csv", function(error,data) {
 
             data.forEach(function(d,i) {
@@ -153,7 +156,7 @@ function map() {
                 }
             });
 
-            draw(data,cc);
+            draw(data,cc, 0);
           });
           break;
       }
