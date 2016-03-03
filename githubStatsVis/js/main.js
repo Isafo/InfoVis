@@ -1,5 +1,5 @@
 
-var pie = new pc("All");
+var pie = new piec("All");
 
 var map = new map();
 
