@@ -80,7 +80,6 @@ function map() {
             })
             //selection
             .on("click",  function(d) {
-                console.log(d.properties.name);
                 d3.select('#title').selectAll("label").remove();
                 d3.select('#info').selectAll("label").remove();
                 
@@ -163,7 +162,6 @@ function map() {
           break;
 
         case "topLanguages":
-          console.log("case topLanguages");
           
           var languages = {};
           var counter = 0;
@@ -174,40 +172,27 @@ function map() {
 
                   if(languages[d["Country"]]){
                       if (languages[d["Country"]][d["repository_language"]]) {
-                        if(d["Country"] == "Germany" && d["repository_language"] == "JavaScript" )
-                          counter++;
                         languages[d["Country"]][d["repository_language"]] += Number(d["num_users"]);
-                        if(d["Country"] == "Germany" && d["repository_language"] == "JavaScript" )
-                          console.log("efter: " + languages[d["Country"]][d["repository_language"]]);
                       }
                       else{
-                        if(d["Country"] == "Germany" && d["repository_language"] == "JavaScript" )
-                          console.log("2 innan: " + languages[d["Country"]][d["repository_language"]]);
                         languages[d["Country"]][d["repository_language"]] = Number(d["num_users"]);
-                        if(d["Country"] == "Germany" && d["repository_language"] == "JavaScript" )
-                          console.log("2 efter: " + languages[d["Country"]][d["repository_language"]]);
                       }
                   }
                   else
                   {
                     languages[d["Country"]] = {};                    
                     languages[d["Country"]][d["repository_language"]] = Number(d["num_users"]);
-                    if(d["Country"] == "Germany" && d["repository_language"] == "JavaScript" )
-                          console.log("Ny: " + languages[d["Country"]]);
                   }
                 }
             });
-            //console.log(languages);
 
             var big = 0;
             var largest;
 
             for (var country in languages){
-              //console.log(key);
               big = 0;
                           
               for (var key in languages[country]){
-                //console.log(Number(languages[country][key]));
                 if ( Number(languages[country][key]) > 0)
                 {
                   if (Number(languages[country][key]) > big){                    
@@ -215,12 +200,8 @@ function map() {
                     largest = key;
                   }
                 }
-                else
-                  console.log("fy");
               }
               if (big != 0){
-                if(country == "Germany" )
-                  console.log(country + " " + largest + " " + big + " count: " + counter);
                 cc[country] = colorLanguage(largest);
               }
             };
