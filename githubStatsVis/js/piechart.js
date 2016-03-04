@@ -1,3 +1,7 @@
+
+
+var color = d3.scale.category20();
+
 function piec(country) {
     var self = this;
     // delar av koden tagen från: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart
@@ -11,8 +15,6 @@ function piec(country) {
     var donutWidth = radius * 0.3; // for piechart: donutWidth = radius;
     var legendRectSize = 18;
     var legendSpacing = 4;
-
-    var color = d3.scale.category20b();
 
     //! remove preveus piechart if thers was one before, needed when switching country.
     d3.select('#chart').selectAll("svg").remove();
@@ -65,7 +67,7 @@ function piec(country) {
         if (tooManyLanguages)
             dataset.push({ label: "others", count: tooManyLanguages })
 
-
+        //create the piechart pises
         var path = svg.selectAll('path')
                       .data(pie(dataset))
                       .enter()
@@ -98,13 +100,13 @@ function piec(country) {
         });
 
         var legend = svg.selectAll('.legend')
-                        .data(color.domain())
+                        .data(dataset)
                         .enter()
                         .append('g')
                         .attr('class', 'legend')
                         .attr('transform', function(d, i) {
                             var height = legendRectSize + legendSpacing;
-                            var offset =  height * color.domain().length / 2;
+                            var offset =  height * dataset.length / 2;
                             var horz = radius + legendRectSize;
                             var vert = i * height - offset;
                             return 'translate(' + horz + ',' + vert + ')';
@@ -113,13 +115,13 @@ function piec(country) {
         legend.append('rect')
               .attr('width', legendRectSize)
               .attr('height', legendRectSize)
-              .style('fill', color)
-              .style('stroke', color);
+              .style('fill', function(d) { return color(d.label)})
+              .style('stroke', function(d) { return color(d.label)});
 
         legend.append('text')
               .attr('x', legendRectSize + legendSpacing)
               .attr('y', legendRectSize - legendSpacing)
-              .text(function(d) { return d; });
+              .text(function(d) { return d.label; });
     });
 
     var tooltip = d3.select('#chart')
