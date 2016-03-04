@@ -82,7 +82,7 @@ function map() {
                 d3.select('#info').append('label').text("Population : " + countries_population[d.properties.name]);
                 d3.select('#info').append('label').text("Numer of commits per 100k people : " + countries_commits[d.properties.name]);
 
-                var pie = new piec(d.properties.name);
+                var pie = new pc(d.properties.name);
             });
 
     }
