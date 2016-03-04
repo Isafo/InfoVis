@@ -3,3 +3,9 @@ $('#language_select').on('change', function() {
 
   map.setMode(mode);
 });
+
+
+document.getElementById("topBtn").addEventListener("click", function(){
+    console.log("click");
+    map.setMode("topLanguages");
+});

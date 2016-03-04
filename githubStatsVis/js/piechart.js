@@ -1,6 +1,6 @@
 
 
-var color = d3.scale.category20();
+var colorLanguage = d3.scale.category20();
 
 function piec(country) {
     var self = this;
@@ -74,7 +74,7 @@ function piec(country) {
                       .append('path')
                       .attr('d', arc)
                       .attr('fill', function(d, i) {
-                        return color(d.data.label);
+                        return colorLanguage(d.data.label);
                       });
 
         path.on('mouseover', function(d) {
@@ -115,8 +115,8 @@ function piec(country) {
         legend.append('rect')
               .attr('width', legendRectSize)
               .attr('height', legendRectSize)
-              .style('fill', function(d) { return color(d.label)})
-              .style('stroke', function(d) { return color(d.label)});
+              .style('fill', function(d) { return colorLanguage(d.label)})
+              .style('stroke', function(d) { return colorLanguage(d.label)});
 
         legend.append('text')
               .attr('x', legendRectSize + legendSpacing)
