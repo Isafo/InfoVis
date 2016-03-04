@@ -136,6 +136,7 @@ function map() {
 
     this.setMode = function(mode) {
       var cc = {};
+      var users = {};
 
       switch(mode) {
         case "All":
@@ -163,7 +164,14 @@ function map() {
             data.forEach(function(d,i) {
               if(d["repository_language"] == mode)
                 if(Number(d["num_users"])) {
-                  cc[d["Country"]] = color(d["num_users"] / population[d["Country"]]);
+                  if(users[d["Country"]]) {
+                    users[d["Country"]] += Number(d["num_users"]);
+                  }
+                  else{
+                    users[d["Country"]] = Number(d["num_users"]);
+                  }
+
+                  cc[d["Country"]] = color(users[d["Country"]] / population[d["Country"]]);
                 }
             });
 
