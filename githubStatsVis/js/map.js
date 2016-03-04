@@ -15,15 +15,13 @@ function map() {
         height = mapDiv.height() - margin.top - margin.bottom;
 
     //initialize color scale
-    //...
-    var color_domain = [ 10, 100, 1000, 10000];
-    var legend_label = ["< 10", "> 10", "> 1000", "> 100000"];
+    var color_domain = [ 10, 100, 1000, 10000 ];
+    var legend_domain = [ 0, 10, 100, 1000 ];
+    var legend_label = ["0 - 10", "10 - 1000", "1000 - 100000", "100000+"];
     var color = d3.scale.threshold()
                         .domain(color_domain)
                         .range(["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]);
 
-    //initialize tooltip
-    //...
 
     var projection = d3.geo.mercator()
         .center([-5, 60 ])
@@ -47,10 +45,17 @@ function map() {
         countries = topojson.feature(world, world.objects.countries).features;
     });
 
-    function draw(data,cc) {
+    function draw(data,cc,mode) {
+        svg.selectAll(".legend").remove();
+        g.selectAll(".country").remove();
+
         var country = g.selectAll(".country").data(countries);
 
-        console.log("draw");
+        var legendInfoText;
+        if(mode == 1)
+          legendInfoText = "Commits per 100k population";
+        else
+          legendInfoText = "Repos per 100k population"
 
         country.enter().insert("path")
             .attr("class", "country")
@@ -85,6 +90,36 @@ function map() {
                 var pie = new piec(d.properties.name);
             });
 
+            var legendDiv = svg.selectAll(".legendDiv")
+                            .data(legend_domain)
+                            .enter().append("g")
+                            .attr("class", "legend");
+
+            var legend = legendDiv.selectAll(".legend")
+                            .data(legend_domain)
+                            .enter().append("g")
+                            .attr("class", "legend");
+
+            var legend_width = 20, legend_height = 20;
+
+            legend.append("rect")
+                  .attr("x", 20)
+                  .attr("y", function(d, i){ return height*0.95 - 4*i - (i*legend_height) - 2*legend_height;})
+                  .attr("width", legend_width)
+                  .attr("height", legend_height)
+                  .style("fill", function(d, i) { return color(d); })
+                  .style("stroke", function(d, i) { return "#888888"; });
+
+            legend.append("text")
+                  .attr("class", "legendInfo")
+                  .attr("x", 20)
+                  .attr("y", height*0.95 - (5*legend_height) - legend_height)
+                  .text(legendInfoText);
+
+            legend.append("text")
+                  .attr("x", 50)
+                  .attr("y", function(d, i){ return height*0.95 - 4*i - (i*legend_height) - legend_height - 4;})
+                  .text(function(d, i){ return legend_label[i]; });
     }
 
     //zoom and panning method
@@ -102,9 +137,6 @@ function map() {
     this.setMode = function(mode) {
       var cc = {};
 
-      console.log("setmode");
-      console.log(mode);
-
       switch(mode) {
         case "All":
           d3.csv("data/github_commits_by_country.csv", function(error,data) {
@@ -114,19 +146,28 @@ function map() {
                   countries_population[d["Country"]] = d["Population"]; 
               });
 
-              draw(data,cc);
+              draw(data,cc, 1);
           });
           break;
 
         default:
+          var population = {};
+          d3.csv("data/github_commits_by_country.csv", function(error,data) {
+              data.forEach(function(d,i) {
+                  population[d["Country"]] = d["Population"] / 100000;
+              });
+          });
+
           d3.csv("data/github_commits_by_location_and_language.csv", function(error,data) {
 
             data.forEach(function(d,i) {
               if(d["repository_language"] == mode)
-                cc[d["Country"]] = color(d["repository_language"]);
+                if(Number(d["num_users"])) {
+                  cc[d["Country"]] = color(d["num_users"] / population[d["Country"]]);
+                }
             });
 
-            draw(data,cc);
+            draw(data,cc, 0);
           });
           break;
       }
