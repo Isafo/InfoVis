@@ -1,6 +1,7 @@
 
 
 var colorLanguage = d3.scale.category20();
+var legendLableLang = {};
 
 function piec(country) {
     var self = this;
@@ -49,8 +50,7 @@ function piec(country) {
                         myMap.set(d.repository_language, Number(d.num_users) + temp);
                         if(d.repository_language == "JavaScript"){
                             countl++;
-                            //temp +=Number(d.num_users); 
-                            console.log("num: " + temp);
+                            //temp +=Number(d.num_users);
                         }
                     }
                     else{
@@ -61,7 +61,6 @@ function piec(country) {
                     //console.log("country " + d.Country + "     language " + d.repository_language +"   number: " +d.num_users);
             }
         });
-        console.log("bigdata count: " + countl)
 
         var dataset = [];
         var tooManyLanguages = 0;
@@ -90,8 +89,6 @@ function piec(country) {
                 return d.count;
             }));
             var percent = Math.round(1000 * d.data.count / total) / 10;
-            //console.log(d.data.label);
-            //console.log(d.data.count);
             tooltip.select('.label2').html(d.data.label);
             tooltip.select('.count').html(d.data.count);
             tooltip.select('.percent').html(percent + '%');
@@ -129,7 +126,7 @@ function piec(country) {
         legend.append('text')
               .attr('x', legendRectSize + legendSpacing)
               .attr('y', legendRectSize - legendSpacing)
-              .text(function(d) { return d.label; });
+              .text(function(d) { legendLableLang[d.label] = d.label; return d.label; });
     });
 
     var tooltip = d3.select('#chart')

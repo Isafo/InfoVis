@@ -38,10 +38,14 @@
                 <!-- row of columns -->
                 <div class="row">
                   <div id="infobar" class="col-xs-6 col-md-3" style="height:110vh;">
+                    <h2>Filters: </h2>
+                    <button id="topBtn" type="button" class="btn btn-default">Display top language in each country</button>
+
+                    <br><br>
+
                     <div class="form-group">
-                     <button id="topBtn" type="button" class="btn btn-default"> Display top language in eatch country</button>
                      <label for="sel1">Filter by language:</label>
-                     <select class="form-control" id="language_select">                     
+                     <select class="form-control" id="language_select">
                        <option value="All">All languages</option>
                        <option value="Java">Java</option>
                        <option value="C++">C++</option>
@@ -57,6 +61,8 @@
                      </select>
                     </div>
 
+                    <h2>Info: </h2>
+
                     <div id="title"></div>
 
                     <div id="chart" style="height:40vh"></div>
@@ -70,15 +76,6 @@
                     <div id="map" style="height:110vh; width:300vh"></div>
                   </div>
                 </div>
-
-                <!--<div class="row">
-                    <br><br><br>
-                    <div class="col-xs-12">
-                        <div id="pc" style="height: 30vh"></div>
-                    </div>
-                </div>-->
-
-
         </div>
 
         <div id="footer">
