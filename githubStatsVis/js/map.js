@@ -37,8 +37,9 @@ function map() {
 
     g = svg.append("g");
 
-	var countries_commits = [];
-    var countries_population = [];
+	  var countries_commits = [];
+    var countries_population = [];    
+    var repo_langues = [];
 
     // load data and draw the map
     d3.json("data/world-topo.json", function(error, world) {
@@ -79,14 +80,25 @@ function map() {
             })
             //selection
             .on("click",  function(d) {
-                console.log(d.properties.name);
                 d3.select('#title').selectAll("label").remove();
                 d3.select('#info').selectAll("label").remove();
                 
                 d3.select('#title').append('label').text("Top 10 languages in " + d.properties.name);
-                d3.select('#info').append('label').text("Population : " + countries_population[d.properties.name]);
-                d3.select('#info').append('label').text("Numer of commits per 100k people : " + countries_commits[d.properties.name]);
 
+                d3.csv("data/github_commits_by_country.csv", function(error,data) {
+
+                  data.forEach(function(d,i) {
+                    countries_commits[d["Country"]] = d["Commits_per_100k_People"];
+                    countries_population[d["Country"]] = d["Population"]; 
+                  });
+
+                  d3.select('#info').append('label').text("Population : " + countries_population[d.properties.name]);
+
+                  if(document.getElementById("language_select").value == "All")        
+                    d3.select('#info').append('label').text("Number of repository per 100k people : " + countries_commits[d.properties.name]);
+                  else
+                    d3.select('#info').append('label').text("Number of " + document.getElementById("language_select").value + " repository per 100k people : " + repo_langues[d.properties.name]);
+                });
                 var pie = new piec(d.properties.name);
             });
 
@@ -135,7 +147,7 @@ function map() {
     }
 
     this.setMode = function(mode) {
-      var cc = {};
+      var cc = {};      
       var users = {};
 
       switch(mode) {
@@ -143,13 +155,61 @@ function map() {
           d3.csv("data/github_commits_by_country.csv", function(error,data) {
               data.forEach(function(d,i) {
                   cc[d["Country"]] = color(d["Commits_per_100k_People"]);
-                  countries_commits[d["Country"]] = d["Commits_per_100k_People"];
-                  countries_population[d["Country"]] = d["Population"]; 
               });
 
               draw(data,cc, 1);
           });
           break;
+
+        case "topLanguages":
+          
+          var languages = {};
+          var counter = 0;
+
+          d3.csv("data/github_commits_by_location_and_language.csv", function(error,data) {
+            data.forEach(function(d,i) {             
+                if (Number(d.num_users)){
+
+                  if(languages[d["Country"]]){
+                      if (languages[d["Country"]][d["repository_language"]]) {
+                        languages[d["Country"]][d["repository_language"]] += Number(d["num_users"]);
+                      }
+                      else{
+                        languages[d["Country"]][d["repository_language"]] = Number(d["num_users"]);
+                      }
+                  }
+                  else
+                  {
+                    languages[d["Country"]] = {};                    
+                    languages[d["Country"]][d["repository_language"]] = Number(d["num_users"]);
+                  }
+                }
+            });
+
+            var big = 0;
+            var largest;
+
+            for (var country in languages){
+              big = 0;
+                          
+              for (var key in languages[country]){
+                if ( Number(languages[country][key]) > 0)
+                {
+                  if (Number(languages[country][key]) > big){                    
+                    big = Number(languages[country][key]);
+                    largest = key;
+                  }
+                }
+              }
+              if (big != 0){
+                cc[country] = colorLanguage(largest);
+              }
+            };
+
+
+            draw(data,cc, 2);
+          });
+        break;
 
         default:
           var population = {};
@@ -172,6 +232,7 @@ function map() {
                   }
 
                   cc[d["Country"]] = color(users[d["Country"]] / population[d["Country"]]);
+                  repo_langues[d["Country"]] = users[d["Country"]] / population[d["Country"]];
                 }
             });
 

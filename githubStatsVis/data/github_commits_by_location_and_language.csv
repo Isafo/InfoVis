@@ -9685,7 +9685,7 @@ Buenos Aires,C#,784
 Taiwan,LiveScript,784
 United States USA/Palermo, Sicily (Italy),Ruby,784
 San Jose,C++,784
-germany,JavaScript,784
+Germany,JavaScript,784
 Quito, Ecuador,JavaScript,784
 Spain, Ja��n, Spain, Espa��a,Python,784
 Campbell, CA, USA,Ruby,784
@@ -9740,7 +9740,7 @@ Brussels, Belgium,Ruby,780
 United States,Lua,780
 Cardiff, UK,PHP,780
 spain,Python,780
-Wuppertal, Germany,JavaScript,780
+Germany,JavaScript,780
 Potsdam,Python,780
 Russia, Obninsk,PHP,780
 Rockville, MD (Washington DC Metro Area),JavaScript,780
@@ -9822,7 +9822,7 @@ United Kingdom - (UK),Java,773
 Buckinghamshire, UK,ColdFusion,773
 Kolkata, India,PHP,773
 Wroclaw, Poland,Java,773
-Kyiv, Ukraine,C++,773
+Ukraine,C++,773
 Houghton,JavaScript,773
 Nijmegen,JavaScript,772
 xiamen,JavaScript,772
@@ -10011,7 +10011,6 @@ Retie, Belgium,PHP,758
 Leidschendam,C,758
 Japan,CoffeeScript,758
 Dallas/Fort Worth TX,Java,758
-���������������,Ruby,758
 Dresden/Germany,C++,757
 Czech Republic,C#,757
 United Kingdom, ON, Canada,PHP,757
@@ -10039,7 +10038,6 @@ Edmonton,Python,755
 Adelaide,PHP,755
 Triangle Land, GA,CSS,755
 Pisgah, WV,PHP,755
-���������������,C++,755
 Strasbourg, France,C++,755
 M��xico,C#,755
 Bratislava, Slovakia,PHP,755
@@ -10111,7 +10109,7 @@ Tepic Nayarit,PHP,747
 Brasilia - Brazil,C#,747
 Edinburgh,C,747
 United States,C#,747
-Bitterfeld-Wolfen, Germany,JavaScript,747
+Germany,JavaScript,747
 United Kingdom,VimL,747
 Kiev, Ukraine,Shell,747
 Brussel, Belgi��,C,747
@@ -10154,7 +10152,7 @@ Washington D.C.,Ruby,744
 Internet,Shell,744
 Hannover,JavaScript,744
 PA, USA,PHP,744
-Chemnitz, Saxony, Germany,JavaScript,744
+Germany,JavaScript,744
 Snoqualmie, WA,JavaScript,744
 Pune, India,C++,744
 Pemberton, NJ,JavaScript,744
@@ -10322,8 +10320,7 @@ Santa Clara, CA, USA,Java,730
 Kiel,C++,730
 Massachusetts,Go,730
 Provo, UT,Java,730
-Ingolstadt, Germany,JavaScript,730
-��������������,PHP,730
+Germany,JavaScript,730
 Baltimore, USA,R,730
 Visakhapatnam, India,Python,729
 Germany,SQF,729
@@ -10390,7 +10387,7 @@ Oklahoma City,Ruby,724
 waterloo,Python,724
 Bologna,JavaScript,723
 Horten, Norway,C,723
-Augsburg Germany,JavaScript,723
+Germany,JavaScript,723
 Billerica, MA,Java,723
 Tartu,CSS,723
 United States,Emacs Lisp,723
@@ -10426,7 +10423,7 @@ United States of America,PHP,720
 Tulsa, OK, USA,JavaScript,720
 Kent, England,C,720
 Poland,Lua,720
-Dortmund, Germany,JavaScript,720
+Germany,JavaScript,720
 Waterloo, On, Ca,Python,720
 Johannesburg, South Africa,Python,720
 Boulder, Colorado,Shell,720
@@ -10440,7 +10437,7 @@ Rostov-on-Don,PHP,720
 Solana Beach,Ruby,720
 Pune HQ, India,JavaScript,719
 Missouri,Ruby,719
-Bochum, Germany,JavaScript,719
+Germany,JavaScript,719
 Blacksburg, VA,Shell,719
 Los Altos, CA,Ruby,719
 Portland, Maine,CSS,719
@@ -10640,7 +10637,7 @@ INDIA,JavaScript,705
 Luxembourg,CSS,705
 Minnesota, USA,C,705
 Devon, UK,JavaScript,705
-Hamburg/Germany,JavaScript,705
+Germany,JavaScript,705
 Santiago,JavaScript,705
 Aarhus, DK,JavaScript,705
 Piscataway, NJ,CSS,705
@@ -10916,7 +10913,7 @@ TX, USA,JavaScript,684
 Bangalore,VimL,684
 hangzhou,Scala,683
 Manchester,C,683
-Kassel, Germany,JavaScript,683
+Germany,JavaScript,683
 Dominican Republic,C#,683
 Varies,Python,683
 Kazan,TeX,683
@@ -11312,7 +11309,7 @@ Tampa, Florida,CSS,658
 Meguro, Japan,CSS,658
 Morgantown, WV,CSS,658
 Nomad,Python,658
-Dresden | Germany,JavaScript,658
+Germany,JavaScript,658
 Boulder, Colorado,Haskell,658
 Portugal,CoffeeScript,658
 Wuhan,China,Python,658
@@ -11520,7 +11517,7 @@ West South Wales,TeX,644
 Decorah, Iowa,JavaScript,643
 Ulm, Germany,Java,643
 Snowdonia, North Wales,PHP,643
-Castrop-Rauxel, NRW, Germany,JavaScript,643
+Germany,JavaScript,643
 Saint Petersburg, Saint Petersburg City, Russian Federation,Shell,643
 South Africa,R,643
 Omsk, Russia,Python,643
@@ -11557,7 +11554,7 @@ Calgary, AB,Ruby,641
 India,Matlab,641
 Newcastle, Australia,CSS,641
 IL, USA,PHP,641
-Germany / Germany,JavaScript,641
+Germany,JavaScript,641
 chengdu,China,JavaScript,641
 Saint-P,JavaScript,641
 Missing.,C#,641
@@ -12672,7 +12669,7 @@ Grumpy,Python,572
 Sunnyvale,C,572
 Newcastle upon Tyne,Java,572
 Jacksonville Beach, FL,Ruby,572
-n��rnberg,germany,JavaScript,572
+n��rnberg,Germany,JavaScript,572
 United States,Swift,572
 Sweden,R,572
 Brazil, Rond��nia - Porto velho,Python,572
@@ -14396,7 +14393,7 @@ saint louis, mo,Java,495
 shenzhen,China,JavaScript,495
 Saratov, Russia,JavaScript,495
 Troy, NY,Go,495
-Germany, germany,JavaScript,495
+Germany, Germany,JavaScript,495
 D��sseldorf,Java,495
 Ukraine, Kyiv,Shell,495
 Montr��al, Canada,Ruby,495
