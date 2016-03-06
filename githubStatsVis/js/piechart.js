@@ -38,7 +38,6 @@ function piec(country) {
     d3.csv("data/github_commits_by_location_and_language.csv", function(error, bigdataset) {
         //rearrange the data so that it can be displayd in the pieChart
         var temp;
-        var countl = 0;
         bigdataset.forEach(function(d) {
 
             if(d.Country == country || country == "All"){
@@ -47,11 +46,6 @@ function piec(country) {
                     if (myMap.has(d.repository_language)){
                         temp = Number(myMap.get(d.repository_language));
                         myMap.set(d.repository_language, Number(d.num_users) + temp);
-                        if(d.repository_language == "JavaScript"){
-                            countl++;
-                            //temp +=Number(d.num_users); 
-                            console.log("num: " + temp);
-                        }
                     }
                     else{
                         myMap.set(d.repository_language, Number(d.num_users));
