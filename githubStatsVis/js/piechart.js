@@ -5,7 +5,8 @@ var legendLableLang = {};
 
 function piec(country) {
     var self = this;
-    // delar av koden tagen från: http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart
+    // parts of the code taken from; [1] http://zeroviscosity.com/d3-js-step-by-step/step-1-a-basic-pie-chart
+    //------------Taken from lab1 TNM048 ------------------------------------------------
 
     var myMap = new Map();
 

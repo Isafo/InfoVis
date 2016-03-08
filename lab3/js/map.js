@@ -86,10 +86,11 @@ function map(data) {
         //console.log(geoFormat(data));
         //console.log(geoDataPoint.features[0].geometry.coordinates);
         console.log(geoData.features);
-        var point = svg.selectAll("path").data(geoData.features);
+        var point = g.selectAll("path").data(geoData.features);
                     point.enter().append("path")
                     .attr("class", "point")
-                    .attr("d", path);
+                    .attr("d", path)
+                    .style("opacity",function(d){return 1;});
     };
 
     //Filters data points according to the specified magnitude
@@ -128,11 +129,20 @@ function map(data) {
         //Complete the code
         var tempData = [];
 
-        console.log(geoData.features)
-        geoData.features.forEach(function(i) {
-            tempData.push([i.properties.depth,i.properties.mag]);
+        d3.selectAll("path")        
+          .filter(".point")
+          .style("opacity", function(d){
+                if(this.style.opacity == 1){
+                    tempData.push([d.properties.depth,d.properties.mag]);
+                    return 1;
+                }
+                else{
+                    console.log(this.style.opacity);
+                    return 0;
+                }
+            });
 
-        });
+        console.log("tempdata");
         console.log(tempData);
 
         var k = Number(document.getElementById("k").value);
@@ -146,7 +156,15 @@ function map(data) {
         var count = -1;
         d3.selectAll("path")        
           .filter(".point")
-          .style("fill",  function(d) {count++; return "hsl(" + kmeansRes[count] * 90 + ",100%,50%)"; });
+          .style("fill",  function(d) {
+            if(this.style.opacity == 1)
+            {
+                count++; 
+                return "hsl(" + kmeansRes[count] * 90 + ",100%,50%)"; 
+            }
+            else
+                return "hsl(" + 40 + ",100%,50%)";
+        });
 
 
     };

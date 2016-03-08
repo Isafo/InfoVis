@@ -4,6 +4,8 @@ function map() {
 
     var self = this; // for internal d3 functions
 
+//------------Taken from lab1 TNM048 -----------------------------------------------
+
     var zoom = d3.behavior.zoom()
         .scaleExtent([1, 1])
         .on("zoom", move);
@@ -13,15 +15,6 @@ function map() {
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
         width = mapDiv.width() - margin.right - margin.left,
         height = mapDiv.height() - margin.top - margin.bottom;
-
-    //initialize color scale
-    var color_domain = [ 10, 100, 1000, 10000 ];
-    var legend_domain = [ 0, 10, 100, 1000 ];
-    var legend_label = ["0 - 10", "10 - 1000", "1000 - 100000", "100000+"];
-    var color = d3.scale.threshold()
-                        .domain(color_domain)
-                        .range(["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]);
-
 
     var projection = d3.geo.mercator()
         .center([-5, 60 ])
@@ -46,6 +39,17 @@ function map() {
         countries = topojson.feature(world, world.objects.countries).features;
     });
 
+//-------------------- End of copied part --------------------------------------------
+
+
+    //initialize color scale
+    var color_domain = [ 10, 100, 1000, 10000 ];
+    var legend_domain = [ 0, 10, 100, 1000 ];
+    var legend_label = ["0 - 10", "10 - 1000", "1000 - 100000", "100000+"];
+    var color = d3.scale.threshold()
+                        .domain(color_domain)
+                        .range(["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"]);
+
     function draw(data,cc,mode) {
         svg.selectAll(".legend").remove();
         g.selectAll(".country").remove();
@@ -65,6 +69,7 @@ function map() {
             break;
         }
 
+//------------Taken from lab1 TNM048 ------------------------------------------------
         country.enter().insert("path")
             .attr("class", "country")
             .attr("d", path)
@@ -74,16 +79,9 @@ function map() {
             .style("fill", function(d) {
                 return cc[d.properties.name];
             })
+//-------------------- End of copied part -------------------------------------------
             .style("stroke", function(d) {
                 return "#888888";
-            })
-
-            //tooltip
-            .on("mousemove", function(d) {
-                //...
-            })
-            .on("mouseout",  function(d) {
-                //...
             })
             //selection
             .on("click",  function(d) {
@@ -148,6 +146,7 @@ function map() {
 
     }
 
+//------------Taken from lab1 TNM048 ------------------------------------------------
     //zoom and panning method
     function move() {
 
@@ -159,6 +158,8 @@ function map() {
         g.style("stroke-width", 1 / s).attr("transform", "translate(" + t + ")scale(" + s + ")");
 
     }
+//-------------------- End of copied part --------------------------------------------
+
 
     this.setMode = function(mode) {
       var cc = {};
